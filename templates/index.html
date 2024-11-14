@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Nutrients App</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Optional CSS -->
+    <style>
+
+        /* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+}
+
+/* Header styles */
+h1 {
+    text-align: center;
+    color: #333;
+    padding: 20px;
+}
+
+/* Form container */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Ensures the form takes up available space */
+}
+
+/* Label styles */
+label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Input field styles */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Button styles */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+/* Footer links styles */
+footer a {
+    color: #1DA1F2;
+    text-decoration: none;
+}
+
+/* Ensures the footer stays at the bottom of the page */
+footer {
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+    </style>
+</head>
+<body>
+    <h1>Food Nutrient Information</h1>
+    <form method="POST">
+        <label for="food_item">Enter Food Item Name:</label>
+        <input type="text" id="food_item" name="food_item" required>
+        <button type="submit">Get Nutrients</button>
+    </form>
+
+    {% if nutrient_info %}
+    <h2>Nutrient composition of {{ nutrient_info.description }}</h2>
+    <ul>
+        {% for nutrient in nutrient_info.nutrients %}
+        <li>{{ nutrient.nutrientName }}: {{ nutrient.value }} {{ nutrient.unitName }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red; text-align: center;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Aashish Kumar Saini. All rights reserved.</p>
+        <p>Follow me on <a href="https://www.linkedin.com/in/aashish-kumar-saini-03946b296/" target="_blank">LinkedIn</a> | <a href="https://github.com/aksaini2003" target="_blank">GitHub</a></p>
+        <p>Made with ❤️ using HTML, CSS, Python and Flask</p>
+    </footer>
+</body>
+</html>
